@@ -109,7 +109,6 @@ type CartContextType = {
   getTotalPrice: () => number;
   isDrawerOpen: boolean;
   toggleDrawer: () => void;
-  cartCount: number;
 };
 
 export const CartContext = createContext<CartContextType | undefined>(
@@ -168,8 +167,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-
   return (
     <CartContext.Provider
       value={{
@@ -181,7 +178,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         getTotalPrice,
         isDrawerOpen,
         toggleDrawer,
-        cartCount,
       }}
     >
       {children}

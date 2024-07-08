@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { cartCount, toggleDrawer } = useCart();
+  const { cartItems, toggleDrawer } = useCart();
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -45,7 +45,7 @@ const Header = () => {
                     <FaShoppingCart className="text-2xl text-white" />
                     <div className="absolute top-[-15px] left-[15px] p-1 bg-white rounded-full w-7 h-7 flex items-center justify-center">
                       <p className="text-lg text-black font-semibold">
-                        {cartCount}
+                        {cartItems.length}
                       </p>
                     </div>
                   </button>

@@ -1,5 +1,5 @@
 import Drawer from "@/components/Drawer/Drawer";
-import { useCart } from "@/Contexts/CartContext/CartContext";
+import useCart from "@/Hooks/useCart";
 import { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";

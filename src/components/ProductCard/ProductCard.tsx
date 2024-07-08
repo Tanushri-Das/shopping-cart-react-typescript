@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent } from "../ui/card";
-import { useCart } from "@/Contexts/CartContext/CartContext";
+import useCart from "@/Hooks/useCart";
 
 type ProductProps = {
   id: number;

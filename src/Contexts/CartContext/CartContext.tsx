@@ -90,7 +90,7 @@
 //   return context;
 // };
 
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
 
 type CartItem = {
   id: number;
@@ -112,7 +112,9 @@ type CartContextType = {
   cartCount: number;
 };
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
+export const CartContext = createContext<CartContextType | undefined>(
+  undefined
+);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -185,12 +187,4 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       {children}
     </CartContext.Provider>
   );
-};
-
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
-  }
-  return context;
 };

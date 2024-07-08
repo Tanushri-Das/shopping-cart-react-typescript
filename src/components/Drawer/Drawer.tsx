@@ -48,10 +48,11 @@
 
 // export default Drawer;
 
-import { useCart } from "@/Contexts/CartContext/CartContext";
+import useCart from "@/Hooks/useCart";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
+import { RxCrossCircled } from "react-icons/rx";
 
 const Drawer: React.FC = () => {
   const {
@@ -76,7 +77,6 @@ const Drawer: React.FC = () => {
             <FaTimes className="text-3xl" />
           </button>
         </div>
-
         <h2 className="text-xl font-semibold">Shopping Cart</h2>
       </div>
       <div className="p-4">
@@ -85,22 +85,30 @@ const Drawer: React.FC = () => {
         </p>
         <div className="space-y-5">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex items-center space-x-2 border-2">
-              <img src={item.img} className="w-16 h-16" alt={item.name} />
-              <div className="flex justify-between items-center space-x-4">
+            <div key={item.id} className="grid grid-cols-2 gap-4 border-2 p-1">
+              <div className="flex items-center space-x-4">
+                <img src={item.img} className="w-16 h-16" alt={item.name} />
                 <p className="text-xl font-semibold">{item.name}</p>
+              </div>
+              <div className="flex justify-between items-center space-x-2">
                 <p className="text-lg font-medium">
                   ${(item.price * item.quantity).toFixed(2)}
                 </p>
-                <div className="flex justify-between items-center space-x-2 border-2">
+                <div className="flex items-center space-x-2">
                   <FiMinusCircle
-                    className="w-[18px] h-[18px] cursor-pointer"
+                    className="w-6 h-6 cursor-pointer"
                     onClick={() => decreaseQuantity(item.id)}
                   />
                   <p className="text-lg font-medium">{item.quantity}</p>
                   <FiPlusCircle
-                    className="w-[18px] h-[18px] cursor-pointer"
+                    className="w-6 h-6 cursor-pointer"
                     onClick={() => increaseQuantity(item.id)}
+                  />
+                </div>
+                <div className="flex items-center ">
+                  <RxCrossCircled
+                    className="text-red-500 text-xl cursor-pointer"
+                    onClick={() => removeItem(item.id)}
                   />
                 </div>
               </div>
@@ -108,8 +116,8 @@ const Drawer: React.FC = () => {
           ))}
         </div>
         <div className="mt-8">
-          <p className="text-xl font-semibold">
-            Total Price: ${getTotalPrice().toFixed(2)}
+          <p className="text-xl font-semibold text-center">
+            Total Price : ${getTotalPrice().toFixed(2)}
           </p>
         </div>
       </div>

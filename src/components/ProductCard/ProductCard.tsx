@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent } from "../ui/card";
+import { useCart } from "@/Contexts/CartContext/CartContext";
 
 type ProductProps = {
   id: number;
@@ -11,6 +12,12 @@ type ProductCardProps = {
   product: ProductProps;
 };
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: ProductProps) => {
+    console.log(product.price);
+    addToCart();
+  };
   return (
     <Card className="">
       <CardContent>
@@ -24,7 +31,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               ${product.price}
             </h2>
             <div className="flex justify-center">
-              <button className="bg-green-600 text-white px-4 py-2 font-semibold rounded-md">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="bg-green-600 text-lg text-white px-4 py-2 font-semibold rounded-md"
+              >
                 Add to Cart
               </button>
             </div>

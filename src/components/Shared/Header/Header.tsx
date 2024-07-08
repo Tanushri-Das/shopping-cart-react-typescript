@@ -1,9 +1,11 @@
+import { useCart } from "@/Contexts/CartContext/CartContext";
 import { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartCount } = useCart();
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -25,10 +27,7 @@ const Header = () => {
           <div className="flex items-center">
             <div className="hidden lg:block ml-auto">
               <div className="flex justify-center space-x-4">
-                <NavLink
-                  to="/"
-                  className="links text-white text-xl font-bold"
-                >
+                <NavLink to="/" className="links text-white text-xl font-bold">
                   Home
                 </NavLink>
                 <NavLink
@@ -40,7 +39,9 @@ const Header = () => {
                 <button className="btn relative">
                   <FaShoppingCart className="text-2xl text-white" />
                   <div className="absolute top-[-15px] left-[15px] p-1 bg-white rounded-full w-7 h-7 flex items-center justify-center">
-                    <p className="text-lg text-black font-semibold">4</p>
+                    <p className="text-lg text-black font-semibold">
+                      {cartCount}
+                    </p>
                   </div>
                 </button>
               </div>

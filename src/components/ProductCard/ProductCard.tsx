@@ -14,9 +14,14 @@ type ProductCardProps = {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
 
-  const handleAddToCart = (product: ProductProps) => {
-    console.log(product.price);
-    addToCart();
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      quantity: 1, // Ensure quantity is provided
+    });
   };
   return (
     <Card className="">
@@ -32,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </h2>
             <div className="flex justify-center">
               <button
-                onClick={() => handleAddToCart(product)}
+                onClick={handleAddToCart} // Pass handleAddToCart directly
                 className="bg-green-600 text-lg text-white px-4 py-2 font-semibold rounded-md"
               >
                 Add to Cart
